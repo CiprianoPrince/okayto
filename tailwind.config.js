@@ -62,8 +62,6 @@ export default {
     animation: {},
   },
   plugins: [
-    require('@tailwindcss/forms')({
-      strategy: 'class',
-    }),
+
   ],
 };
