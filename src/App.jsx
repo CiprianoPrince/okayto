@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { AuthLayout } from './layout';
-import { Signin, Signup } from './pages';
+import { Signin, Signup, Signout } from './pages';
 
 function App() {
     return (
@@ -9,6 +9,7 @@ function App() {
                 <Route element={<AuthLayout />}>
                     <Route path="signin" element={<Signin />} />
                     <Route path="signup" element={<Signup />} />
+                    <Route path="signout" element={<Signout />} />
                 </Route>
             </Routes>
         </>

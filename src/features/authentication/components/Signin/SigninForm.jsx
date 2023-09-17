@@ -1,5 +1,4 @@
 import { Form } from '../../../../components';
-
 import SigninButton from './SigninButton';
 const SigninForm = ({ className, fields, register, errors, handleSubmit, toSubmit, ...props }) => {
     const [email, password] = fields;

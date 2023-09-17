@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // form hooks
@@ -7,10 +8,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 // components
 import SignupForm from './SignupForm';
 
-// redux
-import { useSignupMutation } from '../../redux/authenticationApiSlice';
+// constants
 import { signupConstant } from '../../constants';
-import { useEffect } from 'react';
+
+// redux
+import { useSigninMutation, useSignupMutation } from '../../redux/authenticationApiSlice';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../redux/authenticationSlice';
 
 const Signup = ({ className, ...props }) => {
     const { schema, fields } = signupConstant;
@@ -22,16 +26,24 @@ const Signup = ({ className, ...props }) => {
     const { errors } = formState;
 
     const [signup, { isLoading }] = useSignupMutation();
+    const [signin] = useSigninMutation();
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from || '/';
 
-    const toSubmit = async (data, event) => {
+    console.log(from);
+
+    const toSubmit = async (data) => {
         try {
-            const result = await signup(data).unwrap();
-            console.log(result);
-            event.target.reset();
+            const signupResult = await signup(data).unwrap();
+            if (!(signupResult?.status === 201)) return;
+
+            const signinResult = await signin(data).unwrap();
+
+            if (!signinResult?.accessToken) return;
+            dispatch(setCredentials(signinResult));
             navigate(from, { replace: from === '/' ? false : true });
         } catch (error) {
             console.error(error);

@@ -67,6 +67,7 @@ export default {
                 type: 'text',
                 id: 'text',
                 placeholder: 'Your first name',
+                value: 'Prince',
             },
             error: {
                 className: spanClass,
@@ -84,6 +85,7 @@ export default {
                 type: 'text',
                 id: 'text',
                 placeholder: 'Your last name',
+                value: 'Cipriano',
             },
             error: {
                 className: spanClass,
@@ -101,6 +103,7 @@ export default {
                 type: 'email',
                 id: 'email',
                 placeholder: 'Your email address',
+                value: 'prince@gmail.com',
             },
             error: {
                 className: spanClass,
@@ -118,6 +121,7 @@ export default {
                 type: 'password',
                 id: 'password',
                 placeholder: 'Create your password',
+                value: 'Password69',
             },
             error: {
                 className: spanClass,
@@ -135,6 +139,7 @@ export default {
                 type: 'password',
                 id: 'password',
                 placeholder: 'Confirm your password',
+                value: 'Password69',
             },
             error: {
                 className: spanClass,

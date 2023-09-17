@@ -32,9 +32,9 @@ const Signin = ({ className, ...props }) => {
     const location = useLocation();
     const from = location?.state?.from || '/';
 
-    const toSubmit = async (formData, event) => {
+    const toSubmit = async (data, event) => {
         try {
-            const result = await signin(formData).unwrap();
+            const result = await signin(data).unwrap();
             dispatch(setCredentials(result));
             event.target.reset();
             navigate(from, { replace: from === '/' ? false : true });
