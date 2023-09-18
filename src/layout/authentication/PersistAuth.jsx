@@ -1,7 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useRefreshTokenMutation } from '../../features/authentication/authApiSlice';
-import { selectAccessToken, setCredentials } from '../../features/authentication/redux/authenticationSlice';
+import {
+    selectAccessToken,
+    setCredentials,
+} from '../../features/authentication/redux/authenticationSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const PersistAuth = () => {

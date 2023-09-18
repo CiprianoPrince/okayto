@@ -1,2 +1,2 @@
 // img/layout
-export { default as logo } from './imgs/layout/okayto.png';
+export { default as headerlogo } from './imgs/layout/okayto.png';

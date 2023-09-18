@@ -37,7 +37,7 @@ svg {
 
 @layer components {
     .container {
-        @apply ml-auto mr-auto w-full px-4 sm:max-w-[640px] md:max-w-[1024px] lg:max-w-[1024px] xl:max-w-[1024px] 2xl:max-w-[1280px];
+        @apply w-full max-w-[1280px];
     }
 
     .card {
