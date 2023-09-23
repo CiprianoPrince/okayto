@@ -35,7 +35,10 @@ const Signin = ({ className, ...props }) => {
     const toSubmit = async (data, event) => {
         try {
             const result = await signin(data).unwrap();
-            dispatch(setCredentials(result));
+
+            if (result.status !== 200) return;
+
+            dispatch(setCredentials(result.data));
             event.target.reset();
             navigate(from, { replace: from === '/' ? false : true });
         } catch (error) {

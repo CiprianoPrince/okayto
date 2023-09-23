@@ -17,10 +17,10 @@ const baseQuery = fetchBaseQuery({
 // Handle the refresh logic
 export const handleRefresh = async (api, extraOptions) => {
     const refreshResult = await baseQuery('/refresh', api, extraOptions);
-    if (refreshResult?.data) {
+    if (refreshResult?.data?.accessToken) {
         console.log(refreshResult);
         // store the new token
-        api.dispatch(setCredentials(refreshResult.data));
+        api.dispatch(setCredentials(refreshResult.data.accessToken));
         return true; // Indicates successful refresh
     } else {
         api.dispatch(logOut());
