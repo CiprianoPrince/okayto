@@ -1,12 +1,12 @@
 // rootReducer.js
 import { combineReducers } from 'redux';
 import { apiSlice } from './api/apiSlice';
-import authReducer from '../features/authentication/redux/authenticationSlice';
 import { variantReducer } from '../features/variants/slices';
+import { authenticationReducer } from '../features/authentication/slices';
 
 const rootReducer = combineReducers({
     [apiSlice.reducerPath]: apiSlice.reducer,
-    authentication: authReducer,
+    authentication: authenticationReducer,
     variant: variantReducer,
 });
 

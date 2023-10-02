@@ -16,7 +16,7 @@ import AddToCartButton from './AddToCartButton';
 import { Loading } from '../../../components';
 import useQuantityController from '../../variants/hooks/useQuantityController';
 import jwtDecode from 'jwt-decode';
-import { selectAccessToken } from '../../authentication/redux/authenticationSlice';
+import { selectAccessToken } from '../../authentication/slices';
 import { useForm } from 'react-hook-form';
 import { useAddCartMutation } from '../../cart/slices';
 import { ToastContainer, toast } from 'react-toastify';

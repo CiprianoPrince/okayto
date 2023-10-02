@@ -1,11 +1,10 @@
-import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useRefreshTokenMutation } from '../../features/authentication/authApiSlice';
-import {
-    selectAccessToken,
-    setCredentials,
-} from '../../features/authentication/redux/authenticationSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRefreshTokenMutation } from '../../features/authentication/slices/api';
+
+import { selectAccessToken, setCredentials } from '../../features/authentication/slices';
+
+import { Outlet } from 'react-router-dom';
 
 const PersistAuth = () => {
     const [isLoading, setIsLoading] = useState(true);

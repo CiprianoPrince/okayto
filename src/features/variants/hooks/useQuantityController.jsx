@@ -4,14 +4,11 @@ const useQuantityController = (variant, quantity, setValue) => {
     const incrementIntervalRef = useRef(null);
     const decrementIntervalRef = useRef(null);
 
-    console.log(variant, quantity, setValue);
-
     const handleDecrement = () => {
         setValue('quantity', Math.max(Number(quantity) - 1, 1));
     };
 
     const handleIncrement = () => {
-        console.log('handleIncrement');
         setValue(
             'quantity',
             Math.min(Number(quantity) + 1, variant ? variant.inventory?.quantityInStock : Infinity)

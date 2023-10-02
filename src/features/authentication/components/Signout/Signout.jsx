@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+
+import { logOut } from '../../slices';
+import { useSignoutMutation } from '../../slices/api';
+
 import { Navigate } from 'react-router-dom';
-import { useSignoutMutation } from '../../redux/authenticationApiSlice';
-import { logOut } from '../../redux/authenticationSlice';
 
 const Signout = () => {
     const [signout] = useSignoutMutation();

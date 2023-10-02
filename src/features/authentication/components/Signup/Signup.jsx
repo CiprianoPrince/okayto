@@ -12,9 +12,9 @@ import SignupForm from './SignupForm';
 import { signupConstant } from '../../constants';
 
 // redux
-import { useSigninMutation, useSignupMutation } from '../../redux/authenticationApiSlice';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../../redux/authenticationSlice';
+import { setCredentials } from '../../slices';
+import { useSigninMutation, useSignupMutation } from '../../slices/api';
 
 const Signup = ({ className, ...props }) => {
     const { schema, fields } = signupConstant;
@@ -32,8 +32,6 @@ const Signup = ({ className, ...props }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from || '/';
-
-    console.log(from);
 
     const toSubmit = async (data) => {
         try {

@@ -20,7 +20,7 @@
 import jwtDecode from 'jwt-decode';
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAccessToken } from '../../features/authentication/redux/authenticationSlice';
+import { selectAccessToken } from '../../features/authentication/slices';
 
 const RequireAuth = ({ allowedRoles }) => {
     const token = useSelector(selectAccessToken);

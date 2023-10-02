@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 // react router
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,9 +15,8 @@ import SigninForm from './SigninForm';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { useSigninMutation } from '../../redux/authenticationApiSlice';
-import { setCredentials } from '../../redux/authenticationSlice';
-import { useEffect } from 'react';
+import { setCredentials } from '../../slices';
+import { useSigninMutation } from "../../slices/api";
 const Signin = ({ className, ...props }) => {
     const { schema, fields } = signinConstant;
 

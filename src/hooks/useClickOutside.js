@@ -5,7 +5,6 @@ export default function useClickOutside(ref, cb) {
         'click',
         (e) => {
             if (ref.current == null || ref.current.contains(e.target)) return;
-            console.log('useClickOutside');
             cb(e);
         },
         document

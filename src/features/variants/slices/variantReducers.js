@@ -56,7 +56,6 @@ export const setVariantSets = (state, action) => {
 
         const availableSize = getAvailableSize(state, variantSets?.[0]);
         state.currentSize = availableSize;
-        console.log(availableSize);
 
         const foundVariant = findVariant(state);
         if (!foundVariant) return;
