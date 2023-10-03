@@ -1,9 +1,13 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import DropDownMenuIcon from './DropDownMenuIcon';
 import DropDownMenu from './DropDownMenu';
+
+import { useSelector } from 'react-redux';
+import { selectAccessToken } from '../../../features/authentication/slices';
+
 const UserDropDownMenu = ({ authLinks }) => {
     const UserRef = useRef(null);
     const [showMenu, setShowMenu] = useState(false);
@@ -11,6 +15,18 @@ const UserDropDownMenu = ({ authLinks }) => {
     const handleClick = () => {
         setShowMenu((prev) => !prev);
     };
+
+    const accessLogin = useSelector(selectAccessToken);
+    const filteredAuthLinks = useMemo(() => {
+        return authLinks.filter((authLink) => {
+            const isSigninOrSingup = authLink.path === 'signin' || authLink.path === 'signup';
+            if (accessLogin) {
+                return !isSigninOrSingup;
+            } else {
+                return isSigninOrSingup;
+            }
+        });
+    }, [accessLogin]);
 
     return (
         <>
@@ -22,7 +38,7 @@ const UserDropDownMenu = ({ authLinks }) => {
                     <DropDownMenu
                         className="right-0 top-full w-60"
                         ref={UserRef}
-                        links={authLinks}
+                        links={filteredAuthLinks}
                         setShowMenu={setShowMenu}
                     />
                 )}
