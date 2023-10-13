@@ -1,6 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 import { AuthLayout, ShopLayout } from './layout';
-import { Signin, Signup, Signout, Home, Shop, MostWanted, NewArrival } from './pages';
+import {
+    Signin,
+    Signup,
+    Signout,
+    Home,
+    Shop,
+    MostWanted,
+    NewArrival,
+    Cart,
+    Checkout,
+} from './pages';
 
 function App() {
     return (
@@ -17,6 +27,8 @@ function App() {
                     <Route path="shop" element={<Shop />} />
                     <Route path="most-wanted" element={<MostWanted />} />
                     <Route path="new-arrival" element={<NewArrival />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="checkout" element={<Checkout />} />
                 </Route>
             </Routes>
         </>

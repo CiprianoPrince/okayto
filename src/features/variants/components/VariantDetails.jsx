@@ -1,7 +1,8 @@
 import { memo, useState } from 'react';
 
-import { useProductsData } from '../../products/hooks';
+import { useAddCartMutation } from '../../cart/slices/api';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
     selectCurrentVariant,
     selectCurrentVariantSet,
@@ -18,7 +19,7 @@ import useQuantityController from '../../variants/hooks/useQuantityController';
 import jwtDecode from 'jwt-decode';
 import { selectAccessToken } from '../../authentication/slices';
 import { useForm } from 'react-hook-form';
-import { useAddCartMutation } from '../../cart/slices';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuantityControl from './QuantityControl';

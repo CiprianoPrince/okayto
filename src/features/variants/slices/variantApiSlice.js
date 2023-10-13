@@ -17,6 +17,12 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                 variantsAdapter.setAll(initialVariantsState, response.data),
             providesTags: (result) => [...result.ids.map((id) => ({ type: 'Variant', id }))],
         }),
+        getVariantByProductIdById: builder.query({
+            query: ({ productId, variantId }) => `api/products/${productId}/variants/${variantId}`,
+            transformResponse: (response) =>
+                variantsAdapter.setAll(initialVariantsState, [response.data]),
+            providesTags: (result) => [...result.ids.map((id) => ({ type: 'Variant', id }))],
+        }),
         addVariantToProduct: builder.mutation({
             query: ({ productId, variant }) => ({
                 url: `/products/${productId}/variants`,

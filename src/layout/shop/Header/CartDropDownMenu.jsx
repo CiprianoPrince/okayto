@@ -12,6 +12,13 @@ const CartDropDownMenu = ({ authLinks }) => {
         setShowMenu((prev) => !prev);
     };
 
+    const cartLinks = [
+        {
+            name: 'View cart',
+            path: 'cart',
+        },
+    ];
+
     return (
         <>
             <div className="relative">
@@ -22,7 +29,7 @@ const CartDropDownMenu = ({ authLinks }) => {
                     <DropDownMenu
                         className="right-0 top-full w-80"
                         ref={CartRef}
-                        links={authLinks}
+                        links={cartLinks}
                         setShowMenu={setShowMenu}
                     />
                 )}

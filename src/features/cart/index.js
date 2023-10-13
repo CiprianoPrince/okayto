@@ -1,1 +1,1 @@
-export { default as cartSlice } from './slices/cartSlice';
+export { Cart as CartFeature } from './components';

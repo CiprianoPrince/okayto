@@ -1,7 +1,11 @@
 import variantApiSlice from './variantApiSlice';
 import variantSlice from './variantSlice';
 
-export const { useGetVariantsByProductIdQuery, useAddVariantToProductMutation } = variantApiSlice;
+export const {
+    useGetVariantsByProductIdQuery,
+    useGetVariantByProductIdByIdQuery,
+    useAddVariantToProductMutation,
+} = variantApiSlice;
 
 export const {
     setVariants,

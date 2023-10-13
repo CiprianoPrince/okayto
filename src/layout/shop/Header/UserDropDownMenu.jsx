@@ -34,6 +34,7 @@ const UserDropDownMenu = ({ authLinks }) => {
                 <DropDownMenuIcon ref={UserRef} onClick={handleClick} aria-label="Menu button">
                     <UserIcon className="w-10" />
                 </DropDownMenuIcon>
+
                 {showMenu && (
                     <DropDownMenu
                         className="right-0 top-full w-60"

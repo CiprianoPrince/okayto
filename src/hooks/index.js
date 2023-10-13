@@ -1,5 +1,6 @@
 export { default as useClickOutside } from './useClickOutside';
 export { default as useDebounce } from './useDebounce';
+export { default as useDecodedToken } from './useDecodedToken';
 export { default as useEventListener } from './useEventListener';
 export { default as useHover } from './useHover';
 export { default as useLongPress } from './useLongPress';
