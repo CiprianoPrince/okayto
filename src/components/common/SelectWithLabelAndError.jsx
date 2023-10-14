@@ -8,7 +8,7 @@ const SelectWithLabelAndErrorForwardRef = (
 ) => {
     return (
         <div className={twMerge('relative', wrapperClassName)}>
-            <SelectWithLabel {...props} ref={ref}>
+            <SelectWithLabel ref={ref} {...props}>
                 {children}
             </SelectWithLabel>
             {error && (

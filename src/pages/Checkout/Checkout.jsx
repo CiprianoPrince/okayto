@@ -3,16 +3,17 @@ import { InputWithLabelAndError, SelectWithLabelAndError } from '../../component
 import { useForm } from 'react-hook-form';
 import CalculationVariableAndValue from './CalculationVariableAndValue';
 import AllSummaryItem from './AllSummaryItem';
-import { getRegions } from 'psgc-api-client';
-import { useEffect, useState } from 'react';
 import RegionsSelectField from './RegionsSelectField';
 import ProvincesSelectField from './ProvincesSelectField';
+import CitiesSelectField from './CitiesSelectField';
 
 const Checkout = () => {
-    const { register, handleSubmit, formState, resetField, getValues, watch } = useForm();
+    const { register, handleSubmit, formState, resetField, watch, getValues } = useForm();
     const { errors } = formState;
 
     const region = watch('region', '');
+    const province = watch('province', '');
+    console.log(getValues);
 
     const onSubmit = (formData) => {
         console.log(formData);
@@ -101,19 +102,11 @@ const Checkout = () => {
                                     error={errors.province?.message}
                                 />
 
-                                <SelectWithLabelAndError
-                                    wrapperClassName="flex-1"
-                                    {...register('city')}
-                                    placeholder="Enter your city"
+                                <CitiesSelectField
+                                    province={province}
+                                    register={register}
                                     error={errors.city?.message}
-                                    options={[
-                                        { text: 'Taguig City', value: 'taguig' },
-                                        { text: 'Makati City', value: 'makati' },
-                                    ]}
-                                    required
-                                >
-                                    City
-                                </SelectWithLabelAndError>
+                                />
                             </div>
 
                             <InputWithLabelAndError

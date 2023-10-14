@@ -1,4 +1,3 @@
-import React from 'react';
 import { SelectWithLabelAndError } from '../../components/common';
 import { useGetRegionsQuery } from '../../features/checkout/slices/api';
 

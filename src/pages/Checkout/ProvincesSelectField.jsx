@@ -1,16 +1,14 @@
-import React, { forwardRef } from 'react';
 import { SelectWithLabelAndError } from '../../components/common';
 import { useGetProvincesQuery } from '../../features/checkout/slices/api';
 
 const getProvincesByRegion = (provinces, code) => {
-    const regionNumber = code.slice(0, -7);
-    console.log(regionNumber);
+    const currentRegionNumber = code.slice(0, -7);
     return Object.values(provinces).filter((province) => {
-        return province.code.slice(0, -7) === regionNumber;
+        return province.code.slice(0, -7) === currentRegionNumber;
     });
 };
 
-const ProvincesSelectFieldFowardRef = ({ region, register, error }, ref) => {
+const ProvincesSelectField = ({ region, register, error }) => {
     const { provinces } = useGetProvincesQuery('getProvinces', {
         selectFromResult: ({ data }) => ({
             provinces: region
@@ -34,14 +32,10 @@ const ProvincesSelectFieldFowardRef = ({ region, register, error }, ref) => {
             }}
             required
             disabled={!region}
-            ref={ref}
         >
             Province
         </SelectWithLabelAndError>
     );
 };
-
-const ProvincesSelectField = forwardRef(ProvincesSelectFieldFowardRef);
-ProvincesSelectField.displayName = 'ProvincesSelectField';
 
 export default ProvincesSelectField;
