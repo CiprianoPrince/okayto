@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const SelectWithLabel = ({
-    children,
-    labelClassName,
-    className,
-    id,
-    name,
-    placeholder,
-    required,
-    options = [],
-    onChange,
-    ...props
-}) => {
+const SelectWithLabelForwardRef = (
+    {
+        children,
+        labelClassName,
+        className,
+        id,
+        name,
+        placeholder,
+        required,
+        options,
+        onChange,
+        ...props
+    },
+    ref
+) => {
     const [value, setValue] = useState('');
 
     const handleChange = (e) => {
@@ -44,19 +47,29 @@ const SelectWithLabel = ({
                 id={id ?? name}
                 name={name}
                 onChange={handleChange}
+                ref={ref}
                 {...props}
             >
                 <option className="hidden" selected disabled>
                     {placeholder}
                 </option>
-                {options.map(({ text, value }) => (
-                    <option className="p-2 text-black" key={value} value={value}>
-                        {text}
-                    </option>
-                ))}
+                {options &&
+                    options.data &&
+                    options.data.map((item) => (
+                        <option
+                            className="p-2 text-black"
+                            key={item[options?.value]}
+                            value={item[options?.value]}
+                        >
+                            {item[options.text]}
+                        </option>
+                    ))}
             </select>
         </>
     );
 };
+
+const SelectWithLabel = forwardRef(SelectWithLabelForwardRef);
+SelectWithLabel.displayName = 'SelectWithLabel';
 
 export default SelectWithLabel;

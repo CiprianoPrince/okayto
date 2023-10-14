@@ -1,16 +1,16 @@
+import { forwardRef } from 'react';
 import SelectWithLabel from './SelectWithLabel';
 import { twMerge } from 'tailwind-merge';
 
-const SelectWithLabelAndError = ({
-    children,
-    wrapperClassName,
-    errorClassName,
-    error,
-    ...props
-}) => {
+const SelectWithLabelAndErrorForwardRef = (
+    { children, wrapperClassName, errorClassName, error, ...props },
+    ref
+) => {
     return (
         <div className={twMerge('relative', wrapperClassName)}>
-            <SelectWithLabel {...props}>{children}</SelectWithLabel>
+            <SelectWithLabel {...props} ref={ref}>
+                {children}
+            </SelectWithLabel>
             {error && (
                 <span
                     className={twMerge(
@@ -24,5 +24,8 @@ const SelectWithLabelAndError = ({
         </div>
     );
 };
+
+const SelectWithLabelAndError = forwardRef(SelectWithLabelAndErrorForwardRef);
+SelectWithLabelAndError.displayName = 'SelectWithLabelAndError';
 
 export default SelectWithLabelAndError;

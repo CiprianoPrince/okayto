@@ -3,14 +3,22 @@ import { InputWithLabelAndError, SelectWithLabelAndError } from '../../component
 import { useForm } from 'react-hook-form';
 import CalculationVariableAndValue from './CalculationVariableAndValue';
 import AllSummaryItem from './AllSummaryItem';
+import { getRegions } from 'psgc-api-client';
+import { useEffect, useState } from 'react';
+import RegionsSelectField from './RegionsSelectField';
+import ProvincesSelectField from './ProvincesSelectField';
 
 const Checkout = () => {
-    const { register, handleSubmit, formState, resetField } = useForm();
+    const { register, handleSubmit, formState, resetField, getValues, watch } = useForm();
     const { errors } = formState;
+
+    const region = watch('region', '');
 
     const onSubmit = (formData) => {
         console.log(formData);
     };
+
+    // useEffect(() => {}, [region]);
     return (
         <main>
             <section className="container mx-auto px-4 py-8">
@@ -82,6 +90,17 @@ const Checkout = () => {
                             </InputWithLabelAndError>
 
                             <div className="flex flex-row gap-4">
+                                <RegionsSelectField
+                                    register={register}
+                                    error={errors.region?.message}
+                                />
+
+                                <ProvincesSelectField
+                                    region={region}
+                                    register={register}
+                                    error={errors.province?.message}
+                                />
+
                                 <SelectWithLabelAndError
                                     wrapperClassName="flex-1"
                                     {...register('city')}
@@ -94,20 +113,6 @@ const Checkout = () => {
                                     required
                                 >
                                     City
-                                </SelectWithLabelAndError>
-
-                                <SelectWithLabelAndError
-                                    wrapperClassName="flex-1"
-                                    {...register('region')}
-                                    placeholder="Enter your region"
-                                    error={errors.region?.message}
-                                    options={[
-                                        { text: 'Taguig City', value: 'taguig' },
-                                        { text: 'Makati City', value: 'makati' },
-                                    ]}
-                                    required
-                                >
-                                    Region
                                 </SelectWithLabelAndError>
                             </div>
 

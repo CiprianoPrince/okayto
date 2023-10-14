@@ -1,16 +1,16 @@
+import { forwardRef } from 'react';
 import InputWithLabel from './InputWithLabel';
 import { twMerge } from 'tailwind-merge';
 
-const InputWithLabelAndError = ({
-    children,
-    wrapperClassName,
-    errorClassName,
-    error,
-    ...props
-}) => {
+const InputWithLabelAndErrorForwardRef = (
+    { children, wrapperClassName, errorClassName, error, ...props },
+    ref
+) => {
     return (
         <div className={twMerge('relative', wrapperClassName)}>
-            <InputWithLabel {...props}>{children}</InputWithLabel>
+            <InputWithLabel {...props} ref={ref}>
+                {children}
+            </InputWithLabel>
             {error && (
                 <span
                     className={twMerge(
@@ -24,5 +24,8 @@ const InputWithLabelAndError = ({
         </div>
     );
 };
+
+const InputWithLabelAndError = forwardRef(InputWithLabelAndErrorForwardRef);
+InputWithLabelAndError.displayName = 'InputWithLabelAndError';
 
 export default InputWithLabelAndError;
