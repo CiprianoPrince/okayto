@@ -9,20 +9,13 @@ const SelectWithLabelForwardRef = (
         id,
         name,
         placeholder,
+        curr,
         required,
         options,
-        onChange,
         ...props
     },
     ref
 ) => {
-    const [value, setValue] = useState('');
-
-    const handleChange = (e) => {
-        setValue(e.target.value);
-        onChange(e);
-    };
-
     return (
         <>
             <label
@@ -41,16 +34,15 @@ const SelectWithLabelForwardRef = (
             </label>
             <select
                 className={twMerge(
-                    `form-control | px-3 py-2 ${!value ? ' text-gray-400' : 'text-black'}`,
+                    `form-control | px-3 py-2 ${!curr ? ' text-gray-400' : 'text-black'}`,
                     className
                 )}
                 id={id ?? name}
                 name={name}
-                onChange={handleChange}
                 ref={ref}
                 {...props}
             >
-                <option className="hidden" selected disabled>
+                <option className="hidden" value="" selected disabled>
                     {placeholder}
                 </option>
                 {options &&

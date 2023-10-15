@@ -1,25 +1,40 @@
 import { Link } from 'react-router-dom';
 import { InputWithLabelAndError, SelectWithLabelAndError } from '../../components/common';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import CalculationVariableAndValue from './CalculationVariableAndValue';
 import AllSummaryItem from './AllSummaryItem';
 import RegionsSelectField from './RegionsSelectField';
 import ProvincesSelectField from './ProvincesSelectField';
 import CitiesSelectField from './CitiesSelectField';
-
+import AddressSelectFields from './AddressSelectFields';
+import { useCallback } from 'react';
 const Checkout = () => {
-    const { register, handleSubmit, formState, resetField, watch, getValues } = useForm();
+    const { register, control, watch, setValue, formState, handleSubmit, resetField } = useForm();
     const { errors } = formState;
+
+    const { field } = useController({ name: 'province', control });
 
     const region = watch('region', '');
     const province = watch('province', '');
-    console.log(getValues);
+    const city = watch('city', '');
 
     const onSubmit = (formData) => {
         console.log(formData);
     };
 
-    // useEffect(() => {}, [region]);
+    const handleChangeRegion = useCallback(() => {
+        if (region) {
+            setValue('province', '');
+            setValue('city', '');
+        }
+    }, [region]);
+
+    const handleChangeProvince = useCallback(() => {
+        if (province) {
+            setValue('city', '');
+        }
+    }, [province]);
+
     return (
         <main>
             <section className="container mx-auto px-4 py-8">
@@ -91,21 +106,14 @@ const Checkout = () => {
                             </InputWithLabelAndError>
 
                             <div className="flex flex-row gap-4">
-                                <RegionsSelectField
-                                    register={register}
-                                    error={errors.region?.message}
-                                />
-
-                                <ProvincesSelectField
+                                <AddressSelectFields
                                     region={region}
-                                    register={register}
-                                    error={errors.province?.message}
-                                />
-
-                                <CitiesSelectField
                                     province={province}
+                                    city={city}
+                                    onRegionChange={handleChangeRegion}
+                                    onProvinceChange={handleChangeProvince}
                                     register={register}
-                                    error={errors.city?.message}
+                                    errors={errors}
                                 />
                             </div>
 

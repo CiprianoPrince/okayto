@@ -8,14 +8,14 @@ const getProvincesByRegion = (provinces, code) => {
     });
 };
 
-const ProvincesSelectField = ({ region, register, error }) => {
+const ProvincesSelectField = ({ region, register, error, ...props }) => {
     const { provinces } = useGetProvincesQuery('getProvinces', {
         selectFromResult: ({ data }) => ({
             provinces: region
                 ? data?.entities
                     ? getProvincesByRegion(data.entities, region)
-                    : null
-                : null,
+                    : []
+                : [],
         }),
     });
 
@@ -26,12 +26,13 @@ const ProvincesSelectField = ({ region, register, error }) => {
             placeholder="Select your province"
             error={error}
             options={{
-                data: provinces ? provinces : [],
+                data: provinces,
                 value: 'code',
                 text: 'name',
             }}
             required
-            disabled={!region}
+            disabled={!provinces.length}
+            {...props}
         >
             Province
         </SelectWithLabelAndError>
