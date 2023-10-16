@@ -1,4 +1,4 @@
-const formData = (data) => {
+const toFormData = (data) => {
     const formData = new FormData();
 
     for (const key in data) {
@@ -13,4 +13,4 @@ const formData = (data) => {
     return formData;
 };
 
-export default formData;
+export default toFormData;
